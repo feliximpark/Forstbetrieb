@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{# Dieses Template wird für die "Ausgeloggt" Seite verwendet #}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                {# Kopfzeile der Karte #}
+                <div class="card-header">
+                    <h2 class="text-center">Abgemeldet</h2>
+                </div>
+                {# Inhalt der Karte #}
+                <div class="card-body">
+                    <p class="text-center">Sie wurden erfolgreich abgemeldet.</p>
+                    {# Button zum erneuten Einloggen #}
+                    <div class="text-center mt-3">
+                        <a href="{% url 'login' %}" class="btn btn-primary">Erneut anmelden</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

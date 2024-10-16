@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{# Dieses Template wird für die Login-Seite verwendet #}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                {# Kopfzeile der Karte #}
+                <div class="card-header">
+                    <h2 class="text-center">Anmelden</h2>
+                </div>
+                {# Inhalt der Karte mit Anmeldeformular #}
+                <div class="card-body">
+                    <form method="post" action="{% url 'login' %}">
+                        {% csrf_token %}
+                        {# Benutzername Eingabefeld #}
+                        <div class="form-group">
+                            <label for="username">Benutzername:</label>
+                            <input type="text" name="username" class="form-control" required>
+                        </div>
+                        {# Passwort Eingabefeld #}
+                        <div class="form-group">
+                            <label for="password">Passwort:</label>
+                            <input type="password" name="password" class="form-control" required>
+                        </div>
+                        {# Anmelde-Button #}
+                        <button type="submit" class="btn btn-primary btn-block mt-3">Anmelden</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
