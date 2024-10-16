@@ -1,9 +1,9 @@
 """
-WSGI config for Forstapp project.
+WSGI-Konfiguration für das Forstapp-Projekt.
 
-It exposes the WSGI callable as a module-level variable named ``application``.
+Es stellt die WSGI-Anwendung als Modul-Level-Variable namens `application` bereit.
 
-For more information on this file, see
+Für weitere Informationen zu dieser Datei siehe:
 https://docs.djangoproject.com/en/5.1/howto/deployment/wsgi/
 """
 
@@ -11,6 +11,8 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
+# Setzt die Standard-Django-Einstellungen für die WSGI-Anwendung
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Forstapp.settings')
 
+# Erstellt die WSGI-Anwendung
 application = get_wsgi_application()

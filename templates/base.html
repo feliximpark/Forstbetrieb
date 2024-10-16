@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
+    {# Metadaten und Titel für die Forstbetrieb-Webseite #}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Forstbetrieb{% endblock %}</title>
@@ -11,6 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
 </head>
 <body>
+    {# Kopfzeile mit Logo, Titel und Navigationsmenü #}
     <header class="bg-light py-3">
         <div class="container">
             <div class="row align-items-center">
@@ -21,11 +23,12 @@
                     <h1 class="mb-0">Forstbetrieb Knoop</h1>
                 </div>
                 <div class="col-auto">
+                    {# Navigationsmenü #}
                     <nav class="navbar navbar-expand-lg navbar-light">
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item"><a class="nav-link" href="#">Karte</a></li>
                             <li class="nav-item"><a class="nav-link" href="#">Werkzeuge</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#">To Dos</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">Aufgaben</a></li>
                             <li class="nav-item"><a class="nav-link" href="#">Verwaltung</a></li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="revierDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -37,9 +40,9 @@
                                 </ul>
                             </li>
                             {% if user.is_authenticated %}
-                                <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Abmelden</a></li>
                             {% else %}
-                                <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Anmelden</a></li>
                             {% endif %}
                         </ul>
                     </nav>
@@ -48,9 +51,11 @@
         </div>
     </header>
 
+    {# Hauptinhalt der Seite #}
     <main class="container-fluid">
         {% block content %}
         <div class="row">
+            {# Kartenbereich #}
             <div class="col-9 p-0" id="map-container">
                 <form id="region-form" class="mb-3">
                     <select name="region" id="region-select" class="form-select">
@@ -61,24 +66,27 @@
                 <div id="map">
                     {{ map_html|safe }}
                 </div>
+                {# Kartenmenü #}
                 <div id="map-menu" style="position: absolute; bottom: 10px; left: 10px; z-index: 1000;">
-                    <button id="base-map-btn" class="btn btn-sm btn-light">Base Map</button>
-                    <button id="tree-habitat-btn" class="btn btn-sm btn-light">🌳 Tree Habitats</button>
-                    <button id="placeholder-btn" class="btn btn-sm btn-light">Placeholder</button>
+                    <button id="base-map-btn" class="btn btn-sm btn-light">Basiskarte</button>
+                    <button id="tree-habitat-btn" class="btn btn-sm btn-light">🌳 Baumhabitate</button>
+                    <button id="placeholder-btn" class="btn btn-sm btn-light">Platzhalter</button>
                 </div>
             </div>
+            {# Wetterinformationen #}
             <div class="col-3 bg-light p-3" id="weather-infobar">
-                <h4>Weather Information</h4>
+                <h4>Wetterinformationen</h4>
                 <div id="weather-data">
-                    <!-- Weather data will be populated here -->
+                    <!-- Wetterdaten werden hier eingefügt -->
                 </div>
             </div>
         </div>
         {% endblock %}
     </main>
 
+    {# Fußzeile #}
     <footer>
-        <!-- Footer content will go here -->
+        <!-- Fußzeileninhalt kommt hier -->
     </footer>
 
     <script src="{% static 'MiniStore-1.0.0/js/bootstrap.bundle.min.js' %}"></script>

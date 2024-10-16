@@ -1,18 +1,18 @@
 """
-URL configuration for Forstapp project.
+URL-Konfiguration für das Forstapp-Projekt.
 
-The `urlpatterns` list routes URLs to views. For more information please see:
+Die `urlpatterns`-Liste leitet URLs zu Views weiter. Weitere Informationen finden Sie unter:
     https://docs.djangoproject.com/en/5.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+Beispiele:
+Funktionsbasierte Views
+    1. Import hinzufügen:  from my_app import views
+    2. URL zu urlpatterns hinzufügen:  path('', views.home, name='home')
+Klassenbasierte Views
+    1. Import hinzufügen:  from other_app.views import Home
+    2. URL zu urlpatterns hinzufügen:  path('', Home.as_view(), name='home')
+Einbinden einer anderen URLconf
+    1. Importieren Sie die include()-Funktion: from django.urls import include, path
+    2. URL zu urlpatterns hinzufügen:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
 from django.urls import path, include
@@ -21,9 +21,18 @@ from django.contrib.auth.decorators import login_required
 from core import views
 
 urlpatterns = [
+    # URL für die Django-Admin-Oberfläche
     path('admin/', admin.site.urls),
+
+    # Startseite, nur für eingeloggte Benutzer zugänglich
     path('', login_required(views.home), name='home'),
+
+    # URL zum Aktualisieren der Karte, nur für eingeloggte Benutzer
     path('update_map/', login_required(views.update_map), name='update_map'),
+
+    # URL für die Login-Seite
     path('accounts/login/', LoginView.as_view(), name='login'),
+
+    # URL für die Logout-Funktion
     path('accounts/logout/', LogoutView.as_view(), name='logout'),
 ]
